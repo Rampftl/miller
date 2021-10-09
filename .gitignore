@@ -8,7 +8,6 @@ __*.*
 backup/
 contents/
 dist/
-local_settings.py
 *.log
 !README.md
 # uwsgi related files
