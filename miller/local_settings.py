@@ -25,7 +25,7 @@ _BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MILLER_DEBUG = True
 
 # will be used to send system emails (e.g account registration)
-MILLER_EMAIL       = 'yourmail@yourdomain'
+MILLER_EMAIL       = 'mt@mthomas-it.de'
 
 # the html title?
 MILLER_TITLE       = 'MILLER'
@@ -55,6 +55,7 @@ MILLER_TWITTER_SOCIALTAGS = ''
 
 MILLER_FACEBOOK_APPID = None
 # you can use this ref in your local_settings file
+MILLER_TEMPLATE_BASE_DIR = '/home/mic/Projects/CELL/RESuME'
 
 # (NOT YET IMPLEMENTED) Set to true and uncomment and fill the fields correctly
 MILLER_FIREBASE_ENABLED = False
@@ -65,7 +66,7 @@ MILLER_FIREBASE_ENABLED = False
 # MILLER_FIREBASE_MESSAGINGSENDERID = '385835616038'
 
 # CSV table for command task $ python manage.py task update_localisation and python manage.py task update_localisation_gs if you have a google spreadsheet table
-MILLER_LOCALISATION_TABLE = '/media/mic/Projects/CELL/RESuME/src/locale/locale-all.csv'
+MILLER_LOCALISATION_TABLE = os.path.join(MILLER_TEMPLATE_BASE_DIR, 'src/locale/locale-all.csv')
 MILLER_LOCALISATION_TABLE_GOOGLE_SPREADSHEET = None
 
 # Your Google Analytics account id.
@@ -90,13 +91,14 @@ MILLER_REVIEW_DEFAULT_DUE_DATE_DAYS = 30
 # 2. Django registration app
 # """
 EMAIL_USE_TLS = False
-EMAIL_HOST = None 
-EMAIL_HOST_USER = None
-EMAIL_HOST_PASSWORD = None
-EMAIL_PORT = 25
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 1025
 EMAIL_ACTIVATION_ACCOUNT = MILLER_EMAIL
 
-REGISTRATION_SALT = 'my precious my registration salt'
+REGISTRATION_SALT = 'bibeIs1t'
 
 DISABLE_EMAIL_ACTIVATION = True
 
@@ -147,23 +149,30 @@ SEO_JS_PRERENDER_TOKEN = 'abcdef'
 # Check MILLER_DOMAIN_NAME above
 # """
 DEBUG = True
-ALLOWED_HOSTS = [MILLER_DOMAIN_NAME, u'127.0.0.1']
+ALLOWED_HOSTS = [MILLER_DOMAIN_NAME]
 DEFAULT_FROM_EMAIL = MILLER_EMAIL
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bibe',
+        'USER': 'miller',
+        'PASSWORD': 'miller',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
 
 # """
 # 5. Templating
 # Norlmally, you should not touch this. 
 # Just fill MILLER_TEMPLATE_BASE_DIR above would suffice.
 # """
-
-MILLER_TEMPLATE_BASE_DIR = '/media/mic/Projects/CELL/RESuME'
-
-# ...
 # for debug purposes
 STATIC_ROOT = os.path.join(MILLER_TEMPLATE_BASE_DIR, 'dist')
 STATICFILES_DIRS = [
+  '/home/mic/Projects/CELL/kc4s/src',
   os.path.join(MILLER_TEMPLATE_BASE_DIR, 'src'),
-  os.path.join('/home/mic/Projects/CELL/kc4s', 'src'),
 ]
 
 # templates. No need to extend this normally.
