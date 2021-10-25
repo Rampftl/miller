@@ -19,6 +19,11 @@ media/*
 logs/*
 !logs/.gitkeep
 whoosh/
+miller/lib/python2.7/
+bin/
+dist/
+*.iml
+*.xml
 
 client/src/images/*
 !client/src/images/.gitkeep
@@ -35,3 +40,4 @@ docs/
 google*.html
 
 *.psql
+.idea/
