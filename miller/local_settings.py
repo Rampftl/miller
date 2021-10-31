@@ -230,31 +230,22 @@ MILLER_SETTINGS = {
 MILLER_TAG_CATEGORY_CHOICES = (('SDG', 'SDG indicator'), ('organisation', 'organisation type'), ('bibe-categories', 'BIBE categories'))
 
 # OpenGreenMap settings
-OGM_API_TOKEN = 'be2a210d-7c1c-0d56-dc78-e017e59d1f19'  # To be replaced with correct value
+OGM_API_TOKEN = 'a0f72931-d510-fdab-f84d-e3ec2aaab70f'  # To be replaced with correct value
 OGM_URL = 'https://new.opengreenmap.org/api-v1'
 OGM_HEADERS = {
     'Authorization': 'Bearer ' + OGM_API_TOKEN,
     'Content-Type': 'application/json',
     'Accept': 'application/json'
 }
-OGM_DEFAULT_MAP = '609a437af19de50100123036'
-OGM_DEFAULT_USER = '60c9fa13c983b90100233432'
+OGM_DEFAULT_MAP = '617e777afb7a2601002cd61f'
+OGM_DEFAULT_USER = '617e738e591a440100189d7d'
 OGM_ICONS = {
-    'no-poverty': '5d49aa9df716120100c5d85f',
-    'zero-hunger': '5c2fe51537407e1f05ac3944',
-    'good-health-well-being': '5c311b3537407e1f05ac3946',
-    'quality-education': '5c311f1037407e1f05ac3947',
-    'gender-equality': '5c31239237407e1f05ac3948',
-    'clean-water-sanitation': '5c3124d937407e1f05ac3949',
-    'affordable-clean-energy': '5c31256b37407e1f05ac394a',
-    'decent-work-economic-growth': '5c3125e537407e1f05ac394b',
-    'industry-innovation-infrastructure': '5c31267137407e1f05ac394c',
-    'reduced-inequality': '5c31271f37407e1f05ac394d',
-    'sustainable-cities-communities': '5c312a1737407e1f05ac394e',
-    'responsible-consumption-production': '5c312ab437407e1f05ac394f',
-    'climate-actions': '5c312b3c37407e1f05ac3950',
-    'life-below-water': '5c312bca37407e1f05ac3951',
-    'life-on-land': '5c312ca837407e1f05ac3952',
-    'piece-justice-strong-institutions': '5c312d2f37407e1f05ac3953',
-    'partnerships-for-the-goals': '5c312dc337407e1f05ac3954'
+    'alternative-culture':'617e7a8b211dd601008b0ef7',
+    'climate-and-energy': '617e7b30c4b75f01004b66d6',
+    'community': '617e7b30c4b75f01004b66d6',
+    'discover': '617e7b4cfb7a2601002cd627',
+    'food': '617e7b62c4b75f01004b66da',
+    'gardens': '617e7b79fb7a2601002cd62b',
+    'nature-and-biodiversity': '617e7b99c4b75f01004b66de',
+    'zero-waste': '617e7bb8fb7a2601002cd62f'
 }
