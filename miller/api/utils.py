@@ -1,4 +1,6 @@
 import json, re, types
+import logging
+
 from django.db.models import Q, Value, IntegerField
 from django.contrib.contenttypes.models import ContentType
 from django.core.cache import cache
@@ -169,6 +171,7 @@ class CachedGlue(Glue):
   Note that queryset will be empty of cache is present...
   """
   def __init__(self, request, queryset, extra_ordering=[], perform_q=True, cache_prefix=None):
+    logging.log(logging.ERROR,"queryset " + cache_prefix)
     if cache_prefix:
       self.cache_key = u'{0}.{1}'.format(cache_prefix, self.get_verbose_hash(request=request))
       self.is_in_cache = cache.has_key(self.cache_key) and not request.query_params.get('nocache', None)

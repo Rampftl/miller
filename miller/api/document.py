@@ -1,3 +1,4 @@
+import logging
 import os, json, requests, mimetypes
 
 from django.core.cache import cache
@@ -58,7 +59,10 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
 
   def list(self, request):
+    logging.log(logging.ERROR,"FUGG")
+    cache.delete_many('document.LIST')
     g = CachedGlue(request=request, queryset=self.queryset.distinct(), cache_prefix=Document.get_cache_key(pk='LIST'))
+    logging.log(logging.ERROR,"cache key " + g.cache_key)
     if g.is_in_cache:
       return Response(cache.get(g.cache_key))
 

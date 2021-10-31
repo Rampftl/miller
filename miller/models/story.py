@@ -938,7 +938,7 @@ class Story(models.Model):
       "visibility": 1 if self.status == self.PUBLIC else -1
     }
     # Prepare icon
-    sdgs = [t.slug for t in self.tags.all() if t.category == 'SDG']
+    sdgs = [t.slug for t in self.tags.all() if t.category == 'writing']
     if len(sdgs):
       icon = settings.OGM_ICONS.get(sdgs[0])
       if icon is not None and self.validate_icon(icon):
