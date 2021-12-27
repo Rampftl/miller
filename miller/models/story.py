@@ -922,7 +922,7 @@ class Story(models.Model):
       return False
 
   def prepare_map_description(self):
-    return 'By {}: {}... Read more on: https://www.aktioun-nohaltegkeet.lu/story/{}'.format(
+    return 'By {}: {}... Read more on: https://www.bibe.lu/story/{}'.format(
       ', '.join([a.fullname for a in self.authors.all()]), self.abstract.encode("utf-8"), self.slug)
 
   def prepare_map_data(self):
