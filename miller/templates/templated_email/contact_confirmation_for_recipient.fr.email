@@ -1,0 +1,26 @@
+{% load miller_extras %}
+{% block subject %}{{site_name}} - Proposer un projet {% endblock %}
+{% block plain %}
+Cher {{first_name}},
+
+votre message sur le formulaire de contact du site web [www.bibe.lu](https://www.bibe.lu) a bien été transmis à notre équipe.
+
+> {{content}}
+
+Meilleures salutations,
+
+{% signedby %}
+
+{% endblock %}
+
+{% block html %}
+  <p>Cher {{first_name}},</p>
+
+  <p>votre message sur le formulaire de contact du site web [www.bibe.lu](https://www.bibe.lu) a bien été transmis à notre équipe.</p>
+
+  <blockquote>{{content}}</blockquote>
+
+  <p>Meilleures salutations,</p>
+
+  {% htmlsignedby %}
+{% endblock %}

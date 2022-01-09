@@ -57,6 +57,7 @@ def _loadlocale():
     """
     Load locale from JSON file if any.
     """
+    contents = ''
     if settings.MILLER_LOCALISATION_TABLE_AS_JSON is not None:
         contents = json.load(open(settings.MILLER_LOCALISATION_TABLE_AS_JSON))
     return contents if contents else {}
@@ -80,11 +81,27 @@ def activation_complete(request):
   }))
 
 @csrf_protect
-def contact_view(request):
+def contact_view(request,lang):
   email_status = 'ready'
-  language = request.POST.get('lang','en') if request.method == 'POST' else request.GET.get('lang','en')
+  #language = request.POST.get('lang','en') if request.method == 'POST' else request.GET.get('lang','en')
+  language = lang
   next = request.POST.get('next',None) if request.method == 'POST' else request.GET.get('next',None)
+  print "language " + language
 
+  mylocale = {
+    'de_DE': {'propose.a.project': 'Projekt vorschlagen', 'firstname': 'Vorname', 'lastname': 'Nachname',
+              'email': 'Email-Adresse', 'message': 'Meine Nachricht', 'captcha': 'Captcha',
+              'thank.you': 'Vielen Dank f&uuml;r Ihre Nachricht. Wir melden uns schnellstm&ouml;glich bei Ihnen.','back':'Zurück',
+              'send.message':'Angebot absenden','correct.errors':'Eingaben fehlerhaft. Bitte ändern Sie die ungültigen Eingaben.'},
+    'en_US': {'propose.a.project': 'Propose a project', 'firstname': 'Firstname', 'lastname': 'Lastname',
+              'email': 'Email Address', 'message': 'My Message', 'captcha': 'Captcha',
+              'thank.you': 'Thank you for your message. We will get back to you as soon as possible.','back':'Back',
+              'send.message':'Send offer','correct.errors':'Input is incorrect. Please change the invalid entries.'},
+    'fr_FR': {'propose.a.project': 'Proposer un projet', 'firstname': 'Prénom', 'lastname': 'Nom de famille',
+              'email': 'Adresse e-mail', 'message': 'Mon message', 'captcha': 'Captcha',
+              'thank.you': 'Nous vous remercions pour votre message. Nous vous contacterons dans les plus brefs delais.',
+              'back':'Retour','send.message':'Envoyer l\'offre','correct.errors':'Les données saisies sont erronées. Veuillez modifier les entrées non valides.'}
+  }
   # we don't check available languages. Default is good.
   if not language in settings.LANGUAGES_ISO_6391:
      language = 'en'
@@ -96,17 +113,19 @@ def contact_view(request):
      next = settings.MILLER_HOST
 
   if request.method == 'POST':
+    print "Post Email"
     form = ContactForm(request.POST, initial={
       'date_joined': datetime.datetime
     })
     if form.is_valid():
-        #print 'contact_view IS VALID'
+        print 'contact_view IS VALID'
         context = {
             'site_name': settings.MILLER_TITLE
         }
         context.update(form.cleaned_data)
         
         try:
+          print "send email to staff"
           tmp = send_templated_mail(
             template_name='contact_confirmation_for_staff.en',
             from_email=form.cleaned_data['email_from'],
@@ -115,6 +134,7 @@ def contact_view(request):
             fail_silenty=False,
             #create_link=True
           )
+          print "send email to sender"
           # send recipient email
           tmp = send_templated_mail(
             template_name='contact_confirmation_for_recipient.{0}'.format(language),
@@ -124,8 +144,10 @@ def contact_view(request):
             fail_silenty=False,
             #create_link=True
           )
+          print "send email done"
         except Exception as e:
-          logger.debug('sending contact email failed')
+          print "Exception on send " + e.message
+          logger.error('sending contact email failed')
           logger.exception(e)
           email_status = 'exception'
 
@@ -138,21 +160,23 @@ def contact_view(request):
             'next': next,
             'errors': {},
             'language': language,
-            'locale': _loadlocale()
+            'locale': mylocale
           })
   else:
     form = ContactForm(initial={
       'date_joined': datetime.datetime
     })
 
+  print "Reload page"
   return render(request, 'miller/contacts.html', {
     'form': form,
     'errors': {} if form.is_valid() else form.errors.as_json(),
     'next': next,
     'email_status': email_status,
     'language': language,
-    'locale': _loadlocale()
+    'locale': mylocale
   })
+
 
 
 @csrf_protect

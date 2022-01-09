@@ -1,0 +1,26 @@
+{% load miller_extras %}
+{% block subject %}{{site_name}} - Ein Project vorschlagen {% endblock %}
+{% block plain %}
+Sehr geehrter {{first_name}},
+
+Ihre Nachricht über das Kontaktformular auf der Website [www.bibe.lu](https://www.bibe.lu) wurde erfolgreich an unsere Mitarbeiter gesendet.
+
+> {{content}}
+
+Mit freundlichen Grüßen,
+
+{% signedby %}
+
+{% endblock %}
+
+{% block html %}
+  <p>Dear {{first_name}},</p>
+
+  <p>Ihre Nachricht über das Kontaktformular auf der Website [www.bibe.lu](https://www.bibe.lu) wurde erfolgreich an unsere Mitarbeiter gesendet.</p>
+
+  <blockquote>{{content}}</blockquote>
+
+  <p>Mit freundlichen Grüßen,</p>
+
+  {% htmlsignedby %}
+{% endblock %}

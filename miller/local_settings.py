@@ -28,7 +28,7 @@ MILLER_DEBUG = True
 MILLER_EMAIL       = 'mt@mthomas-it.de'
 
 # the html title?
-MILLER_TITLE       = 'MILLER'
+MILLER_TITLE       = 'Bibe'
 
 # html metadata description
 MILLER_DESCRIPTION = '''
@@ -40,7 +40,7 @@ MILLER_HOST          = 'http://localhost:8000'
 MILLER_HOST_PROTOCOL = 'http' # of https
 
 # signature (unicode)
-MILLER_SIGNEDBY    = u'The Editorial Team\nMiller – Université du Luxembourg\nWeb ' + MILLER_HOST
+MILLER_SIGNEDBY    = u'The Editorial Team\nfrom BIBE\nWeb ' + MILLER_HOST
 
 # the absolute path for websocket, absolute without trailing slashes. Default: localhost for django debug
 MILLER_WS_HOST   = 'ws://localhost:8000/ws'
@@ -227,7 +227,7 @@ MILLER_SETTINGS = {
 }
 
 # tag categories
-MILLER_TAG_CATEGORY_CHOICES = (('SDG', 'SDG indicator'), ('organisation', 'organisation type'), ('bibe-categories', 'BIBE categories'))
+MILLER_TAG_CATEGORY_CHOICES = (('SDG', 'SDG indicator'), ('organisation', 'organisation type'), ('writing', 'BIBE categories'))
 
 # OpenGreenMap settings
 OGM_API_TOKEN = 'a0f72931-d510-fdab-f84d-e3ec2aaab70f'  # To be replaced with correct value

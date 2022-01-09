@@ -48,11 +48,12 @@ def lookupmulti(obj, key, language, html=False):
 
     """
     languageKey = [item[2] for item in settings.LANGUAGES if language in item[0]][0]
+    print "languageKey = " + languageKey
     defaultLanguageKey = [item[2] for item in settings.LANGUAGES if item[0] == settings.LANGUAGE_CODE][0]
+    print "defaultLanguageKey = " + defaultLanguageKey
 
     # get language if any
     content = obj.get(languageKey, {}).get(key, None)
-
     if content is not None:
         return mark_safe(markdown(content, extensions=['markdown.extensions.nl2br'])) if html else content
 

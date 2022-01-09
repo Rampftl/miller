@@ -72,7 +72,9 @@ urlpatterns = [
   url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout_view'),
   url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
 
-  url(r'^contact-us/$', views.contact_view, name='contact_view'),
+  url(r'^contact-us-de_DE/$', views.contact_view,  {'lang': 'de'}, name='contact_view'),
+  url(r'^contact-us-en_US/$', views.contact_view,  {'lang': 'en'}, name='contact_view'),
+  url(r'^contact-us-fr_FR/$', views.contact_view,  {'lang': 'fr'}, name='contact_view'),
 
   url(r'^latest/rss\.xml$', LatestEntriesFeed(), name='latest_rss'),
   url(r'^latest/atom/$', AtomLatestEntriesFeed()),
