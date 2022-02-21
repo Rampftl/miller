@@ -92,15 +92,18 @@ def contact_view(request,lang):
     'de_DE': {'propose.a.project': 'Projekt vorschlagen', 'firstname': 'Vorname', 'lastname': 'Nachname',
               'email': 'Email-Adresse', 'message': 'Meine Nachricht', 'captcha': 'Captcha',
               'thank.you': 'Vielen Dank f&uuml;r Ihre Nachricht. Wir melden uns schnellstm&ouml;glich bei Ihnen.','back':'Zurück',
-              'send.message':'Angebot absenden','correct.errors':'Eingaben fehlerhaft. Bitte ändern Sie die ungültigen Eingaben.'},
+              'send.message':'Angebot absenden','correct.errors':'Eingaben fehlerhaft. Bitte ändern Sie die ungültigen Eingaben.',
+              'footer.termsofservice':'NUTZUNGSBEDINGUNGEN'},
     'en_US': {'propose.a.project': 'Propose a project', 'firstname': 'Firstname', 'lastname': 'Lastname',
               'email': 'Email Address', 'message': 'My Message', 'captcha': 'Captcha',
               'thank.you': 'Thank you for your message. We will get back to you as soon as possible.','back':'Back',
-              'send.message':'Send offer','correct.errors':'Input is incorrect. Please change the invalid entries.'},
+              'send.message':'Send offer','correct.errors':'Input is incorrect. Please change the invalid entries.',
+              'footer.termsofservice':'TERMS OF USE'},
     'fr_FR': {'propose.a.project': 'Proposer un projet', 'firstname': 'Prénom', 'lastname': 'Nom de famille',
               'email': 'Adresse e-mail', 'message': 'Mon message', 'captcha': 'Captcha',
               'thank.you': 'Nous vous remercions pour votre message. Nous vous contacterons dans les plus brefs delais.',
-              'back':'Retour','send.message':'Envoyer l\'offre','correct.errors':'Les données saisies sont erronées. Veuillez modifier les entrées non valides.'}
+              'back':'Retour','send.message':'Envoyer l\'offre','correct.errors':'Les données saisies sont erronées. Veuillez modifier les entrées non valides.',
+              'footer.termsofservice':'CONDITIONS D\'UTILISATION'}
   }
   # we don't check available languages. Default is good.
   if not language in settings.LANGUAGES_ISO_6391:
